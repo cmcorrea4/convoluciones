@@ -213,7 +213,7 @@ if img_array is not None:
     # Obtener kernel y datos del filtro seleccionado
     info_filtro = KERNELS[filtro_seleccionado]
     
-    if info_filtro["kernel"] == "sobel_combinado":
+    if isinstance(info_filtro["kernel"], str) and info_filtro["kernel"] == "sobel_combinado":
         sx = cv2.Sobel(img_gris, cv2.CV_32F, 1, 0)
         sy = cv2.Sobel(img_gris, cv2.CV_32F, 0, 1)
         resultado = np.sqrt(sx**2 + sy**2)
@@ -300,7 +300,7 @@ if img_array is not None:
         nombre = nombres_filtros[idx]
         info = KERNELS[nombre]
         
-        if info["kernel"] == "sobel_combinado":
+        if isinstance(info["kernel"], str) and info["kernel"] == "sobel_combinado":
             sx = cv2.Sobel(img_gris, cv2.CV_32F, 1, 0)
             sy = cv2.Sobel(img_gris, cv2.CV_32F, 0, 1)
             fm = np.clip(np.sqrt(sx**2 + sy**2), 0, 255)
